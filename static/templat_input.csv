@@ -1,0 +1,4 @@
+Age,Gender,Coffee_Intake,Caffeine_mg,Sleep_Hours,Sleep_Quality,BMI,Heart_Rate,Stress_Level,Physical_Activity_Hours,Smoking,Alcohol_Consumption
+34,Male,3.5,,7.2,Good,23.9,72,Medium,5,0,0
+28,Female,5.2,,5.5,Fair,27.1,81,High,2,1,1
+52,Other,1.0,,7.8,Excellent,22.0,68,Low,8,0,0

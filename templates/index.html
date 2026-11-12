@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CaffiCare &mdash; Skrining Kesehatan Peminum Kopi</title>
+  <meta name="description"
+    content="Skrining kesehatan berbasis gaya hidup peminum kopi menggunakan machine learning dengan sentuhan estetika organik dan bersahaja.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+  <!-- ============ HEADER NAVIGATION ============ -->
+  <header class="site-header">
+    <a href="#hero" class="brand-wrapper" aria-label="CaffiCare - Beranda">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M12 2.5C7.2 2.5 4 6.5 4 12s3.2 9.5 8 9.5 8-4 8-9.5-3.2-9.5-8-9.5Z" />
+          <path d="M12 2.5c-1.8 3.8 1.8 7 1.8 9.5s-3.6 5.7-1.8 9.5" />
+        </svg>
+      </div>
+      <span class="brand-name">Caffi<span class="brand-accent">Care</span></span>
+    </a>
+
+    <nav class="header-nav">
+      <a href="#hero">Beranda</a>
+      <a href="#story">Filosofi</a>
+      <a href="#features">Prinsip</a>
+      <a href="#process">Tahapan</a>
+      <a href="#app-section">Skrining</a>
+      <a href="#faq">Pertanyaan</a>
+    </nav>
+
+    <a href="#app-section" class="header-cta-btn">
+      <span>Mulai Skrining</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+    </a>
+
+    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Buka navigasi" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Navigasi">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Tutup navigasi">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <nav class="mobile-nav">
+      <a href="#hero">Beranda</a>
+      <a href="#story">Filosofi</a>
+      <a href="#features">Prinsip</a>
+      <a href="#process">Tahapan</a>
+      <a href="#app-section">Skrining</a>
+      <a href="#faq">Pertanyaan</a>
+      <a href="#app-section" class="btn-organic-primary mobile-nav-cta">Mulai Skrining</a>
+    </nav>
+  </div>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero-section" id="hero">
+    <div class="hero-container">
+
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Harmoni antara kebiasaan kopi <span class="italic-accent">&amp; kesehatan tubuh.</span>
+        </h1>
+        <p class="hero-description">
+          Setiap cangkir kopi bercerita tentang rutinitasmu. Masukkan pola konsumsi kopi dan ritme harianmu untuk
+          memprediksi apakah gaya hidupmu berada pada kategori <strong>Sehat</strong>, <strong>Cukup Sehat</strong>,
+          atau <strong>Kurang Sehat</strong> dengan model cerdas <span id="model-nama-hero">{{ model_nama if model_ready
+            else 'Machine Learning' }}</span>.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#app-section" class="btn-organic-primary" id="scroll-cue">
+            <span>Cek Kondisimu Sekarang</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </a>
+          <a href="#features" class="btn-organic-text">
+            <span>Pelajari metodologi</span>
+            &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual-frame">
+        <div class="hero-shape-container">
+          <img src="{{ url_for('static', filename='images/hero_coffee_organic.jpg') }}" alt="Cangkir Kopi Estetik Alami"
+            class="hero-organic-image">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER: Hero to Story (Cream to Sand) -->
+  <div class="wave-divider wave-top-cream" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-sand" d="M0,0 L0,35 Q360,75 720,35 T1440,35 L1440,100 L0,100 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============ STORY / PHILOSOPHY SECTION ============ -->
+  <section class="story-section" id="story">
+    <div class="story-container">
+
+      <div class="story-image-wrap">
+        <img src="{{ url_for('static', filename='images/story_pourover.jpg') }}" alt="Seduhan Kopi Artisan Handcrafted">
+      </div>
+
+      <div class="story-content">
+        <h2>Menikmati rasa,<br><em>menjaga keseimbangan raga.</em></h2>
+        <p>
+          Kopi adalah bagian dari ritme harianmu. Aplikasi ini memadukan kebiasaan konsumsi kopi dengan data tidur dan
+          aktivitas fisik agar kamu tetap menikmati seduhan favorit secara seimbang.
+        </p>
+
+        <div class="story-quote-card">
+          &ldquo;Kesehatan bukan tentang berhenti menikmati kopi, melainkan memahami batas tubuhmu dengan penuh
+          kesadaran.&rdquo;
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER: Story to Features (Sand to Rich Coffee) -->
+  <div class="wave-divider wave-top-sand" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-coffee" d="M0,0 L0,40 Q360,80 720,40 T1440,40 L1440,100 L0,100 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============ FEATURES RIBBON (RICH COFFEE BACKGROUND) ============ -->
+  <section class="features-ribbon" id="features">
+    <div class="section-header-centered">
+      <h2>Prinsip Analisis</h2>
+      <p class="section-sub">Model machine learning mengintegrasikan metrik utama gaya hidup untuk menghasilkan skrining
+        yang akurat dan komprehensif.</p>
+    </div>
+
+    <div class="features-grid">
+
+      <div class="feature-pillar-card">
+        <div class="pillar-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="1" x2="6" y2="4"></line>
+            <line x1="10" y1="1" x2="10" y2="4"></line>
+            <line x1="14" y1="1" x2="14" y2="4"></line>
+          </svg>
+        </div>
+        <h3>Analisis Kafein</h3>
+        <p>Estimasi kandungan kafein harian dihitung otomatis dari takaran cangkir, lengkap dengan batas aman
+          rekomendasi FDA (400 mg/hari).</p>
+      </div>
+
+      <div class="feature-pillar-card">
+        <div class="pillar-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+            <path d="M12 2a10 10 0 0 1 10 10h-10V2z"></path>
+            <path d="M12 12 2.1 12a10 10 0 0 0 9.9 9.9V12z"></path>
+          </svg>
+        </div>
+        <h3>Pola Pemulihan</h3>
+        <p>Durasi serta kualitas tidur malam dipadukan dengan tingkat stres psikologis dan detak jantung istirahat untuk
+          mengukur kapasitas recovery.</p>
+      </div>
+
+      <div class="feature-pillar-card">
+        <div class="pillar-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+          </svg>
+        </div>
+        <h3>Vitalitas Fisik</h3>
+        <p>Kalkulasi BMI otomatis dari tinggi dan berat badan, didukung riwayat aktivitas mingguan serta kebiasaan
+          merokok dan alkohol.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER: Features to Process (Rich Coffee to Cream) -->
+  <div class="wave-divider wave-top-coffee" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-cream" d="M0,0 L0,40 Q360,80 720,40 T1440,40 L1440,100 L0,100 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============ PROCESS STEPS ============ -->
+  <section class="process-section" id="process">
+    <div class="section-header-centered">
+      <span class="section-eyebrow">Alur Skrining</span>
+      <h2>Langkah mudah mengetahui kondisimu</h2>
+    </div>
+
+    <div class="process-grid">
+
+      <div class="process-step-card">
+        <div class="step-number-bubble">01</div>
+        <h3>Input Data Ringkas</h3>
+        <p>Isi form dengan kebiasaan minum kopi, durasi tidur, BMI, dan riwayat gaya hidup harianmu.</p>
+      </div>
+
+      <div class="process-step-card">
+        <div class="step-number-bubble">02</div>
+        <h3>Klasifikasi Cerdas</h3>
+        <p>Model Machine Learning memetakan kombinasi variabel terhadap pola kesehatan terstandar.</p>
+      </div>
+
+      <div class="process-step-card">
+        <div class="step-number-bubble">03</div>
+        <h3>Hasil &amp; Probabilitas</h3>
+        <p>Dapatkan status (Sehat / Cukup / Kurang) disertai persentase probabilitas tiap kategori secara instan.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER: Process to App Section (Cream to Warm Sand) -->
+  <div class="wave-divider wave-top-cream" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-sand" d="M0,0 L0,35 Q360,75 720,35 T1440,35 L1440,100 L0,100 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============ MAIN PREDICTION APPLICATION SECTION ============ -->
+  <section class="app-section" id="app-section">
+    <div class="app-container">
+
+      <div class="app-intro-header">
+        <h2>Formulir Penilaian Mandiri</h2>
+        <p>Pilih mode penilaian satu orang atau unggah berkas CSV untuk pengujian kolektif.</p>
+      </div>
+
+      <!-- Mode Switch Pills -->
+      <div class="mode-switch" role="tablist" aria-label="Pilih mode input">
+        <button class="mode-btn is-active" id="tab-single" role="tab" aria-selected="true">
+          <span class="mode-btn-title">Input Satu Data</span>
+          <span class="mode-btn-desc">Satu individu, hasil instan</span>
+        </button>
+        <button class="mode-btn" id="tab-batch" role="tab" aria-selected="false">
+          <span class="mode-btn-title">Unggah File CSV</span>
+          <span class="mode-btn-desc">Prediksi banyak data sekaligus</span>
+        </button>
+      </div>
+
+      <!-- MODE 1: SATU DATA -->
+      <section class="panel" id="panel-single">
+        <div class="panel-grid">
+
+          <!-- Formulir -->
+          <form id="single-form" class="card form-card">
+            <h2>
+              <span>Data Gaya Hidup</span>
+              <span class="badge-indicator">Formulir Mandiri</span>
+            </h2>
+
+            <!-- Group 1: Minum Kopi -->
+            <div class="form-group-section">
+              <div class="group-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                  <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                </svg>
+                <span>Konsumsi Kopi Harian</span>
+              </div>
+              <div class="field-grid">
+
+                <label class="field">
+                  <span>Jumlah Kopi (cangkir/hari)</span>
+                  <input type="number" step="0.1" name="Coffee_Intake" min="0" max="15" placeholder="Contoh: 3" required
+                    id="coffee-input">
+                </label>
+
+                <label class="field field-readout">
+                  <span>Estimasi Kafein</span>
+                  <div class="readout-box">
+                    <output id="caffeine-readout">-</output>
+                    <span class="status-badge" id="caffeine-badge" style="display: none;"></span>
+                  </div>
+                  <small>Dihitung otomatis (1 cangkir = 95 mg kafein).</small>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Group 2: Tidur & Istirahat -->
+            <div class="form-group-section">
+              <div class="group-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <span>Tidur &amp; Istirahat</span>
+              </div>
+              <div class="field-grid">
+
+                <label class="field">
+                  <span>Durasi Tidur (jam/malam)</span>
+                  <input type="number" step="0.1" name="Sleep_Hours" min="0" max="14" placeholder="Contoh: 7" required
+                    id="sleep-input">
+                </label>
+
+                <label class="field">
+                  <span>Kualitas Tidur</span>
+                  <div class="select-wrap">
+                    <select name="Sleep_Quality" required id="sleep-quality-input">
+                      <option value="" disabled selected>Pilih Kualitas Tidur</option>
+                      <option value="Poor">Buruk</option>
+                      <option value="Fair">Cukup</option>
+                      <option value="Good">Baik</option>
+                      <option value="Excellent">Sangat Baik</option>
+                    </select>
+                  </div>
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Group 3: Profil & Vitalitas -->
+            <div class="form-group-section">
+              <div class="group-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="7" r="4"></circle>
+                  <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+                </svg>
+                <span>Profil &amp; Vitalitas Fisik</span>
+              </div>
+              <div class="field-grid">
+
+                <label class="field">
+                  <span>Usia (tahun)</span>
+                  <input type="number" name="Age" min="15" max="100" placeholder="Contoh: 28" required id="age-input">
+                </label>
+
+                <label class="field">
+                  <span>Jenis Kelamin</span>
+                  <div class="select-wrap">
+                    <select name="Gender" required id="gender-input">
+                      <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                      <option value="Female">Perempuan</option>
+                      <option value="Male">Laki-laki</option>
+                      <option value="Other">Lainnya</option>
+                    </select>
+                  </div>
+                </label>
+
+                <label class="field">
+                  <span>Tinggi Badan (cm)</span>
+                  <input type="number" id="height-input" min="100" max="230" placeholder="Contoh: 165" required>
+                </label>
+
+                <label class="field">
+                  <span>Berat Badan (kg)</span>
+                  <input type="number" id="weight-input" min="30" max="200" placeholder="Contoh: 60" required>
+                </label>
+
+                <label class="field field-readout field-full-span">
+                  <span>BMI (Indeks Massa Tubuh)</span>
+                  <div class="readout-box">
+                    <output id="bmi-readout">-</output>
+                    <span class="status-badge" id="bmi-badge" style="display: none;"></span>
+                    <input type="hidden" name="BMI" id="bmi-hidden" value="">
+                  </div>
+                </label>
+
+                <label class="field">
+                  <span>Denyut Jantung (bpm)</span>
+                  <input type="number" name="Heart_Rate" min="30" max="200" placeholder="Contoh: 72" required id="heart-input">
+                </label>
+
+                <label class="field">
+                  <span>Tingkat Stres</span>
+                  <div class="select-wrap">
+                    <select name="Stress_Level" required id="stress-input">
+                      <option value="" disabled selected>Pilih Tingkat Stres</option>
+                      <option value="Low">Rendah</option>
+                      <option value="Medium">Sedang</option>
+                      <option value="High">Tinggi</option>
+                    </select>
+                  </div>
+                </label>
+
+                <label class="field field-full-span">
+                  <span>Aktivitas Fisik (jam/minggu)</span>
+                  <input type="number" step="0.1" name="Physical_Activity_Hours" min="0" max="40" placeholder="Contoh: 4.5" required
+                    id="activity-input">
+                </label>
+
+              </div>
+            </div>
+
+            <!-- Group 4: Kebiasaan Tambahan -->
+            <div class="form-group-section">
+              <div class="group-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span>Kebiasaan Tambahan</span>
+              </div>
+              <div class="toggle-row">
+                <label class="toggle">
+                  <input type="checkbox" id="smoking-input">
+                  <span>Merokok</span>
+                </label>
+                <label class="toggle">
+                  <input type="checkbox" id="alcohol-input">
+                  <span>Konsumsi Alkohol</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" id="single-submit">
+                ☕ Seduh Prediksi
+              </button>
+              <button type="button" class="btn-secondary-reset" id="single-reset" title="Kosongkan formulir">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                <span>Reset Form</span>
+              </button>
+            </div>
+            <p class="form-msg" id="single-error" role="alert"></p>
+          </form>
+
+          <!-- Result card: Organic Ceramic Cup Display -->
+          <div class="card result-card">
+            <h2>
+              <span>Hasil Skrining</span>
+              <span class="badge-indicator">AI Prediction</span>
+            </h2>
+
+            <div class="cup-wrap">
+              <div class="cup">
+                <div class="cup-liquid" id="cup-liquid"></div>
+                <div class="cup-shine"></div>
+              </div>
+              <div class="cup-handle"></div>
+              <div class="steam" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+
+            <div class="result-readout" id="result-readout">
+              <p class="result-placeholder">Lengkapi data pada formulir di sebelah kiri lalu tekan tombol
+                &ldquo;Seduh Prediksi&rdquo; untuk melihat hasilnya di sini.</p>
+            </div>
+
+            <div class="prob-bars" id="prob-bars"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MODE 2: UNGGAH CSV -->
+      <section class="panel is-hidden" id="panel-batch">
+        <div class="card upload-card">
+          <h2>
+            <span>Unggah Berkas CSV</span>
+            <span class="badge-indicator">Batch Mode</span>
+          </h2>
+          <p class="upload-hint"
+            style="color: var(--text-body); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.25rem;">
+            Berkas perlu memuat kolom:
+            <code
+              style="font-family: var(--font-mono); background: #FAF7F2; padding: 0.2em 0.4em; border-radius: 4px; border: 1px solid var(--border-soft);">Age, Gender, Coffee_Intake, Sleep_Hours, Sleep_Quality, BMI, Heart_Rate, Stress_Level, Physical_Activity_Hours, Smoking, Alcohol_Consumption</code>.
+          </p>
+
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="file-input" accept=".csv" hidden>
+            <div style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--terracotta);">📂</div>
+            <p><strong>Seret berkas CSV ke sini</strong> atau klik untuk memilih file</p>
+            <p class="dropzone-filename" id="dropzone-filename"></p>
+          </div>
+
+          <div class="upload-actions">
+            <a href="{{ url_for('static', filename='templat_input.csv') }}" download class="btn-ghost">
+              <span>Unduh Templat CSV</span>
+            </a>
+            <button type="button" class="btn-primary" id="batch-submit" disabled>Proses Semua Baris</button>
+            <button type="button" class="btn-ghost" id="batch-reset" title="Kosongkan file yang diunggah">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
+              </svg>
+              <span>Reset Berkas</span>
+            </button>
+          </div>
+          <p class="form-msg" id="batch-error" role="alert"></p>
+        </div>
+
+        <div class="card batch-results is-hidden" id="batch-results" style="margin-top: 2rem;">
+          <div class="batch-summary" id="batch-summary"></div>
+          <div class="table-wrap">
+            <table id="batch-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="table-note" id="table-note" style="color: var(--text-muted); font-size: 0.8rem; margin: 0.8rem 0;">
+          </p>
+          <button type="button" class="btn-primary" id="download-btn" style="width: auto;">Unduh Hasil CSV
+            Lengkap</button>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER: App Section to FAQ (Warm Sand to Cream) -->
+  <div class="wave-divider wave-top-sand" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-cream" d="M0,0 L0,40 Q360,80 720,40 T1440,40 L1440,100 L0,100 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============ FAQ SECTION ============ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-container">
+
+      <div class="faq-header">
+        <span class="section-eyebrow">Tanya Jawab</span>
+        <h2>Pertanyaan Umum &amp; Medis</h2>
+        <p class="section-sub">Informasi penting mengenai konsumsi kafein dan dasar klasifikasi model kami.</p>
+      </div>
+
+      <div class="faq-accordion">
+
+        <details class="faq-item">
+          <summary>Berapa batas aman konsumsi kopi harian bagi orang dewasa?</summary>
+          <p>
+            Menurut panduan U.S. FDA dan otoritas kesehatan dunia, konsumsi kafein hingga <strong>400 mg per
+              hari</strong> (setara sekitar 3 hingga 4 cangkir kopi standar) umumnya aman dan tidak menimbulkan efek
+            negatif bagi orang dewasa yang sehat.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Bagaimana model Machine Learning menentukan status kesehatan?</summary>
+          <p>
+            Model menganalisis interaksi multivariat antara kuantitas kopi, estimasi kafein, durasi serta kualitas tidur
+            malam, tingkat stres psikologis, Indeks Massa Tubuh (BMI), denyut jantung, hingga riwayat aktivitas fisik
+            harian.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Apakah hasil skrining ini menggantikan diagnosis medis profesional?</summary>
+          <p>
+            <strong>Tidak.</strong> Aplikasi ini berfungsi sebagai alat skrining awal dan edukasi mandiri berbasis pola
+            statistik data penelitian, bukan diagnosis klinis resmi. Untuk saran penanganan medis spesifik, selalu
+            konsultasikan ke dokter atau ahli gizi terpercaya.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER: FAQ to Footer (Cream to Dark Espresso) -->
+  <div class="wave-divider wave-top-cream" aria-hidden="true">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path class="wave-fill-dark" d="M0,0 L0,35 Q360,75 720,35 T1440,35 L1440,100 L0,100 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============ FOOTER (DARK ESPRESSO) ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-top">
+        <a href="#hero" class="footer-brand" aria-label="CaffiCare - Beranda">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M12 2.5C7.2 2.5 4 6.5 4 12s3.2 9.5 8 9.5 8-4 8-9.5-3.2-9.5-8-9.5Z" />
+              <path d="M12 2.5c-1.8 3.8 1.8 7 1.8 9.5s-3.6 5.7-1.8 9.5" />
+            </svg>
+          </div>
+          <span class="brand-name">Caffi<span class="brand-accent">Care</span></span>
+        </a>
+
+        <nav class="footer-nav">
+          <a href="#hero">Beranda</a>
+          <a href="#story">Filosofi</a>
+          <a href="#features">Prinsip</a>
+          <a href="#app-section">Skrining</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+
+      <!-- Footer Contact Information -->
+      <div class="footer-contact">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Email</span>
+            <a href="mailto:2300018309@webmail.uad.ac.id">2300018309@webmail.uad.ac.id</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">WhatsApp</span>
+            <a href="https://wa.me/6285876598957" target="_blank" rel="noopener">+62 858-7659-8957</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/nathaniela-isya-nur-rofiah-080889390/" target="_blank"
+              rel="noopener">Nathaniela Isya</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 CaffiCare. All rights reserved.</span>
+        <div class="footer-tagline-text">
+          <span>Skrining Kesehatan Peminum Kopi</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+    // Smooth scroll for cue button
+    const scrollCue = document.getElementById('scroll-cue');
+    if (scrollCue) {
+      scrollCue.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('app-section').scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  </script>
+
+</body>
+
+</html>
