@@ -340,6 +340,29 @@ em {
   background: var(--terracotta);
 }
 
+/* Hero Disclaimer Pill (Top Notice) */
+.hero-disclaimer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--espresso-dark);
+  background: rgba(158, 93, 63, 0.08);
+  border: 1px solid rgba(158, 93, 63, 0.22);
+  padding: 0.42rem 1.05rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.6rem;
+  line-height: 1.45;
+  box-shadow: 0 2px 8px rgba(58, 40, 30, 0.03);
+}
+
+.hero-disclaimer-pill svg {
+  color: var(--terracotta);
+  flex-shrink: 0;
+}
+
 .hero-title {
   font-size: clamp(2.8rem, 5.2vw, 4.4rem);
   font-weight: 500;
@@ -363,6 +386,11 @@ em {
   color: var(--text-body);
   max-width: 540px;
   margin-bottom: 2.2rem;
+}
+
+.hero-description strong {
+  font-weight: 700;
+  color: var(--espresso-dark);
 }
 
 .hero-actions {
@@ -2089,6 +2117,13 @@ tbody td.pred-cell.kurang-sehat { color: var(--rust-alert); font-weight: 700; }
   /* Hero */
   .hero-section {
     padding: 3rem var(--page-padding) 2.5rem;
+  }
+
+  .hero-disclaimer-pill {
+    font-size: 0.74rem;
+    padding: 0.35rem 0.85rem;
+    text-align: center;
+    line-height: 1.4;
   }
 
   .hero-shape-container {
