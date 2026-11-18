@@ -789,12 +789,16 @@ em {
   background: var(--bg-cream-tint);
   padding: 5rem 0 5.5rem;
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .app-container {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 var(--page-padding);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .app-intro-header {
@@ -892,6 +896,9 @@ em {
   border-radius: var(--radius-organic);
   padding: 2.8rem 2.6rem;
   box-shadow: 0 20px 50px rgba(58, 40, 30, 0.09), 0 4px 16px rgba(58, 40, 30, 0.03);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .form-card {
@@ -922,6 +929,8 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .card h2 .badge-indicator {
@@ -2088,7 +2097,9 @@ tbody td.pred-cell.kurang-sehat { color: var(--rust-alert); font-weight: 700; }
   }
 
   .panel-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    gap: 2rem;
   }
 
   .result-card {
@@ -2107,7 +2118,7 @@ tbody td.pred-cell.kurang-sehat { color: var(--rust-alert); font-weight: 700; }
 
 @media (max-width: 720px) {
   :root {
-    --page-padding: 1.25rem;
+    --page-padding: 1.15rem;
   }
 
   .site-header {
@@ -2155,30 +2166,105 @@ tbody td.pred-cell.kurang-sehat { color: var(--rust-alert); font-weight: 700; }
     height: 240px;
   }
 
-  /* Mode switch */
+  /* Mode switch: Centered clean card with proper border radius */
   .mode-switch {
+    display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
+    border-radius: 18px;
+    padding: 6px;
+    margin: 0 auto 2.2rem;
+    position: static;
     left: auto;
     transform: none;
+    gap: 0.35rem;
   }
 
   .mode-btn {
     width: 100%;
     min-width: unset;
+    border-radius: 13px;
+    padding: 0.75rem 1rem;
+    text-align: center;
   }
 
-  /* Form fields */
+  /* Form & Panels */
+  .panel {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .field-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
   }
 
   .card {
-    padding: 1.6rem 1.25rem;
-    border-radius: var(--radius-soft);
+    padding: 1.5rem 1.15rem;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .card h2 {
+    font-size: 1.35rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.3rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .card h2 .badge-indicator {
+    font-size: 0.68rem;
+    padding: 0.25rem 0.65rem;
+    letter-spacing: 0.04em;
+    align-self: flex-start;
   }
 
   .form-group-section {
-    padding: 1.1rem 1rem;
+    padding: 1.15rem 0.95rem;
+    border-radius: 14px;
+    margin-bottom: 1.25rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .group-title {
+    font-size: 0.78rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    line-height: 1.3;
+  }
+
+  .group-title svg {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+  }
+
+  .readout-box {
+    padding: 0.65rem 0.9rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .form-actions .btn-primary,
+  .btn-secondary-reset {
+    width: 100%;
+    flex: none;
+    padding: 1rem 1.25rem;
+    font-size: 0.84rem;
   }
 
   /* Footer */
@@ -2197,5 +2283,23 @@ tbody td.pred-cell.kurang-sehat { color: var(--rust-alert); font-weight: 700; }
     grid-template-columns: 1fr;
     max-width: 420px;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --page-padding: 0.95rem;
+  }
+
+  .card {
+    padding: 1.3rem 0.95rem;
+  }
+
+  .card h2 {
+    font-size: 1.22rem;
+  }
+
+  .form-group-section {
+    padding: 1rem 0.8rem;
   }
 }
